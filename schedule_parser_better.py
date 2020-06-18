@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 import json
 import sys
 
-url = 'https://kbp.by/rasp/timetable/view_beta_kbp/?page=stable&cat=group&id=16'
-
+# url = 'https://kbp.by/rasp/timetable/view_beta_kbp/?page=stable&cat=group&id=16'
+url = 'https://kbp.by/rasp/timetable/view_beta_kbp/?cat=teacher&id=2'
 
 def remove_void(lst):  # перебираем список и делаем новый только с bs4 Tag'ами
     post_lst = []
@@ -12,6 +12,30 @@ def remove_void(lst):  # перебираем список и делаем но�
         if str(i.__class__) == "<class 'bs4.element.Tag'>":
             post_lst.append(i)
     return post_lst
+
+
+def remove_None(lst):  # удаляет пустые пары из ячеек
+    k = True
+    while k:
+        k = False
+        for i in lst:
+            if i is None:
+                lst.remove(i)
+                k = True
+
+
+def rotate_table_90(old_table):  # Меняет строки и столбцы местами
+    new_table = []
+    for i in range(len(old_table[0])):  # создаёт строки из столбцов
+        new_table.append([])
+    k = 0
+    while k < len(old_table[0]):  # заполняет строки столбцами
+        y = 0
+        while y < len(old_table):
+            new_table[k].append(old_table[y][k])
+            y += 1
+        k += 1
+    return new_table
 
 
 def get_html(link):  # Возвращает bs4 объект страницы
@@ -27,7 +51,7 @@ def get_html(link):  # Возвращает bs4 объект страницы
 page = get_html(url)
 
 
-def get_left_week(bs4_page):
+def get_left_week(bs4_page):  # возвращает bs4-элемент с id "left_week"
     bs4_page = bs4_page.find('div', id='left_week')
     try:
         bs4_page = bs4_page.find('table')
@@ -40,20 +64,20 @@ def get_left_week(bs4_page):
 left_week = get_left_week(page)
 
 
-def make_children_list(bs4_page):
+def make_children_list(bs4_page):  # возвращает список потомков bs4-элемента (без пустых строк, всё кошерно)
     try:
         children_list = list(bs4_page.children)  # создаёт список потомков bs4_page
         children_list = remove_void(children_list)  # удаляет символы новой строки в bs4 NavigableString из списка
         return children_list  # возвращает только bs4 Tag'и
     except AttributeError:
-        print("It's look like you tried to get children from non-bs4 obj", sys._getframe())
+        print("It's looks like you tried to get children from non-bs4 obj", sys._getframe())
         return None
 
 
 td_lines = make_children_list(left_week)[2:]  # отрезается строка с днями недели и чекбоксами замен
 
 
-def make_sells(lst):
+def make_sells(lst):  # возвращает таблицу по дням с парами в каждой ячейке
     table = []
     for i in range(len(lst)):  # создаёт таблицу, стостоящую из строк и пар в них
         sells = make_children_list(lst[i])[1:-1]  # разбивает строку на ячейки, удаляет первый и последний элемент
@@ -66,12 +90,19 @@ def make_sells(lst):
         for i in range(len(table[h])):
             for u in range(len(table[h][i])):
                 classes = table[h][i][u].get_attribute_list('class')
-                if 'removed' in classes or 'empty-pair' in classes:
+                if 'removed' in classes or 'empty-pair' in classes:  # заменяет пустые и удалённые пары в ячейке на None
                     table[h][i][u] = None
+                if len(table[h][i]) == 1 and table[h][i][0] is None:  # заменяет пустые одиночные ячейки на None
+                    table[h][i] = None
 
-    return table
+    for h in table:  # удаляет пустые и удалённые пары из ячейки
+        for i in h:
+            if isinstance(i, list):
+                remove_None(i)
+
+    return rotate_table_90(table)
 
 
 # make_sells(td_lines)[3][2]
-print(make_sells(td_lines)[3][2])
-# print(make_sells(td_lines)[3])
+# print(make_sells(td_lines)[3][2])
+print(make_sells(td_lines))
