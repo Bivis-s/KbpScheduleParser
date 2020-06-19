@@ -3,8 +3,6 @@ from bs4 import BeautifulSoup
 import json
 import sys
 
-# url = 'https://kbp.by/rasp/timetable/view_beta_kbp/?page=stable&cat=group&id=16'
-url = 'https://kbp.by/rasp/timetable/view_beta_kbp/?cat=teacher&id=2'
 
 def remove_void(lst):  # перебираем список и делаем новый только с bs4 Tag'ами
     post_lst = []
@@ -48,9 +46,6 @@ def get_html(link):  # Возвращает bs4 объект страницы
     return bs4_page
 
 
-page = get_html(url)
-
-
 def get_left_week(bs4_page):  # возвращает bs4-элемент с id "left_week"
     bs4_page = bs4_page.find('div', id='left_week')
     try:
@@ -59,9 +54,6 @@ def get_left_week(bs4_page):  # возвращает bs4-элемент с id "l
         print('ERROR there is no left week. ///', sys._getframe())
         return None
     return bs4_page
-
-
-left_week = get_left_week(page)
 
 
 def make_children_list(bs4_page):  # возвращает список потомков bs4-элемента (без пустых строк, всё кошерно)
@@ -74,14 +66,11 @@ def make_children_list(bs4_page):  # возвращает список пото�
         return None
 
 
-td_lines = make_children_list(left_week)[2:]  # отрезается строка с днями недели и чекбоксами замен
-
-
 def make_sells(lst):  # возвращает таблицу по дням с парами в каждой ячейке
     table = []
     for i in range(len(lst)):  # создаёт таблицу, стостоящую из строк и пар в них
         sells = make_children_list(lst[i])[1:-1]  # разбивает строку на ячейки, удаляет первый и последний элемент
-        # (это номера строк)
+        # (это номера строк в расписании)
         table.append(sells)
     for h in range(len(table)):
         for i in range(len(table[h])):
@@ -103,6 +92,47 @@ def make_sells(lst):  # возвращает таблицу по дням с п�
     return rotate_table_90(table)
 
 
-# make_sells(td_lines)[3][2]
-# print(make_sells(td_lines)[3][2])
-print(make_sells(td_lines))
+def make_unit(sell):  # создаёт словарь с параметрами пары. Значениями могут быть строки, списки(учителя), None, bool
+    if sell is not None:
+        pairs = []
+        for pair in sell:
+            unit = {'subject': None, 'teacher': None, 'place': None, 'added': False, 'extra': None, 'group': None}
+            if 'added' in pair.get_attribute_list('class'):  # ищет added в html классе пары
+                unit['added'] = True
+
+            divs = pair.findAll('div')  # получаем список всех дивов в паре
+            for i in unit:  # перебираем дивы и присваиваем совпадения ключам словаря
+                attributes = []
+                for h in divs:
+                    if i in h.get_attribute_list('class'):
+                        if h.text != '':
+                            attributes.append(h.text)
+                if len(attributes) > 1:
+                    unit[i] = attributes
+                elif attributes:
+                    unit[i] = attributes[0]
+            pairs.append(unit)
+            if unit['subject'] == 'Пара снята':
+                return None
+        return pairs
+    else:
+        return None
+
+
+def make_unit_sells(sells):
+    table = []
+    for i in range(len(sells)):
+        table.append([])
+        for h in sells[i]:
+            table[i].append(make_unit(h))
+    return table
+
+
+def refresh(url):
+    page = get_html(url)
+    left_week = get_left_week(page)
+    td_lines = make_children_list(left_week)[2:]  # отрезается строка с днями недели и чекбоксами замен
+    pair_sells = make_sells(td_lines)
+    unit_sells = make_unit_sells(pair_sells)
+    with open('table.json', 'w', encoding='utf-8') as f:
+        json.dump(unit_sells, f, ensure_ascii=False)

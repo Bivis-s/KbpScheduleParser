@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-# noinspection PyUnresolvedReferences
-from schedule_parser import rvoid
+
+from schedule_parser_better import remove_void
 
 
 def refresh(url):
@@ -23,7 +23,7 @@ def refresh(url):
         if i.get_attribute_list('class')[0] == 'find_block':
             find_block = i
 
-    columns = rvoid(list(find_block.children))
+    columns = remove_void(list(find_block.children))
     table = []
     for h in range(len(columns)):
         table.append({})

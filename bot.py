@@ -1,15 +1,11 @@
 import json
 from discord.ext import commands
 import discord
-import asyncio
 import time
 
-# noinspection PyUnresolvedReferences
-import strToList
-# noinspection PyUnresolvedReferences
-import schedule_parser
-# noinspection PyUnresolvedReferences
 import group_parser
+import string_from_json_table
+import schedule_parser_better
 
 
 # возвращает сообщение без команды
@@ -29,7 +25,7 @@ def anti_spam():
     global unstop
 
     first_mark = time.time()
-    if unstop or first_mark - second_mark >= 5:
+    if unstop or first_mark - second_mark >= 3:
         second_mark = time.time()
         unstop = False
         return True
@@ -52,7 +48,14 @@ async def on_ready():
 
 
 @client.command(pass_conetext=True)
-async def g(ctx):
+async def t(ctx):
+    commands_list = getClear(ctx.message.content)
+    print(commands_list, type(commands_list))
+    await ctx.send(commands_list)
+
+
+@client.command(pass_conetext=True)
+async def g(ctx):  # устанавливает валидную группу в глобальную переменную
     global group_num
     global group_id
     commands_list = getClear(ctx.message.content)
@@ -63,8 +66,6 @@ async def g(ctx):
             group_parser.refresh(GROUPS_URL)  # обновляет файл groups.json
             with open('groups.json', 'r', encoding='utf-8') as tbl:
                 group_file = json.loads(tbl.read())
-                answer = discord.Embed(title='Доступные группы', description='Введите команду -g set [номер группы]',
-                                       url=GROUPS_URL)
 
             for i in range(len(group_file)):  # валидатор группы
                 val = list(group_file[i].keys())
@@ -105,22 +106,22 @@ async def g(ctx):
 
 
 @client.command(pass_conetext=True)
-async def test(ctx):
+async def s(ctx):  # выводит форматированное расписание в виде embed-столбцов
     if group_num == no_group:
         await ctx.send('Чтобы указать группу введите команду -g set [номер группы], чтобы установить группу или -g, '
                        'чтобы посмотреть список доступных групп')
     else:
-        if anti_spam():
-            schedule_parser.refresh(SCHEDULE_URL + group_id)
+        if anti_spam():  # антиспам задержка 3 секунды
+            schedule_parser_better.refresh(SCHEDULE_URL + group_id)
             with open('table.json', 'r', encoding='utf-8') as tbl:
                 table_file = json.loads(tbl.read())
-            week_str_list = strToList.make_week_string_list(table_file)
+            week_str_list = string_from_json_table.make_week_string_list(table_file)
 
             answer = discord.Embed(title='Расписание', description=f'{group_num}', url=(SCHEDULE_URL + group_id))
             for i in range(len(week_str_list)):
                 pairs = len(week_str_list[i]) - 2
                 ending = ''
-                if pairs in [4, 3, 2]:
+                if pairs in [4, 3, 2]:  # проверка на окончание
                     ending = 'ы'
                 elif pairs == 1:
                     ending = 'а'
@@ -133,6 +134,4 @@ async def test(ctx):
             await ctx.send('Воу, воу, не так быстро')
 
 
-token = open('../token.txt', 'r').readline()
-
-client.run(token)
+client.run('your_token')
