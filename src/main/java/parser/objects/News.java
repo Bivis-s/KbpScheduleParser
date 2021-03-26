@@ -3,7 +3,7 @@ package parser.objects;
 import lombok.Data;
 
 @Data
-public class New {
+public class News {
     private String title;
     private String caption;
     private String articleLink;
