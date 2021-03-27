@@ -1,9 +1,9 @@
 package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.enums.Page;
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import by.bivis.kbp.parser.enums.Page;
 
 import java.io.IOError;
 import java.io.IOException;

@@ -1,10 +1,10 @@
 package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.enums.Page;
+import by.bivis.kbp.parser.objects.News;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import by.bivis.kbp.parser.enums.Page;
-import by.bivis.kbp.parser.objects.News;
 
 import java.util.ArrayList;
 import java.util.List;

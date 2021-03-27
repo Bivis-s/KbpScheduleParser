@@ -1,22 +1,22 @@
 package tests.parser;
 
+import by.bivis.kbp.parser.enums.Page;
+import by.bivis.kbp.parser.objects.News;
+import by.bivis.kbp.parser.objects.Source;
+import by.bivis.kbp.parser.parsers.NewsParser;
+import by.bivis.kbp.parser.parsers.PageParser;
+import by.bivis.kbp.parser.parsers.SourceParser;
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Document;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import by.bivis.kbp.parser.parsers.NewsParser;
-import by.bivis.kbp.parser.parsers.PageParser;
-import by.bivis.kbp.parser.parsers.SourceParser;
-import by.bivis.kbp.parser.enums.Page;
-import by.bivis.kbp.parser.objects.News;
-import by.bivis.kbp.parser.objects.Source;
 import tests.BaseTest;
 
 import java.util.List;
 
+import static by.bivis.kbp.parser.utils.JsoupUtils.getInnerElement;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import static by.bivis.kbp.parser.utils.JsoupUtils.getInnerElement;
 
 @Log4j2
 public class ParserTest extends BaseTest {

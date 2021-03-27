@@ -18,7 +18,7 @@ public enum Page implements EnumValue {
 
     /**
      * Returns enum value + {@param stringForConcatenation}
-     *
+     * <p>
      * For example:
      * When
      * SCHEDULE.getValue() returns "https://kbp.by/rasp/timetable/view_beta_kbp/"

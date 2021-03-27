@@ -1,9 +1,8 @@
 package by.bivis.kbp.parser.objects;
 
-import by.bivis.kbp.parser.objects.schedule.ScheduleColumn;
-import lombok.Builder;
-import lombok.Data;
 import by.bivis.kbp.parser.enums.SourceType;
+import by.bivis.kbp.parser.objects.schedule.ScheduleColumn;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package tests.parser;
 
-import org.testng.annotations.Test;
 import by.bivis.kbp.parser.utils.StringUtils;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
