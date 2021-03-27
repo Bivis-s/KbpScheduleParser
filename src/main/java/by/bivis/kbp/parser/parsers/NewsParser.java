@@ -1,19 +1,19 @@
-package parser;
+package by.bivis.kbp.parser.parsers;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import parser.enums.Page;
-import parser.objects.News;
+import by.bivis.kbp.parser.enums.Page;
+import by.bivis.kbp.parser.objects.News;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static parser.PageParser.getPage;
-import static parser.utils.JsoupUtils.*;
-import static parser.utils.StringUtils.cutOutSubStrings;
+import static by.bivis.kbp.parser.parsers.PageParser.getPage;
+import static by.bivis.kbp.parser.utils.JsoupUtils.*;
+import static by.bivis.kbp.parser.utils.StringUtils.cutOutSubStrings;
 
-public class NewsParser {
+public final class NewsParser {
     private NewsParser() {
     }
 

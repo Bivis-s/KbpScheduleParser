@@ -4,19 +4,19 @@ import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Document;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import parser.NewsParser;
-import parser.PageParser;
-import parser.SourceParser;
-import parser.enums.Page;
-import parser.objects.News;
-import parser.objects.Source;
+import by.bivis.kbp.parser.parsers.NewsParser;
+import by.bivis.kbp.parser.parsers.PageParser;
+import by.bivis.kbp.parser.parsers.SourceParser;
+import by.bivis.kbp.parser.enums.Page;
+import by.bivis.kbp.parser.objects.News;
+import by.bivis.kbp.parser.objects.Source;
 import tests.BaseTest;
 
 import java.util.List;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import static parser.utils.JsoupUtils.getInnerElement;
+import static by.bivis.kbp.parser.utils.JsoupUtils.getInnerElement;
 
 @Log4j2
 public class ParserTest extends BaseTest {
@@ -53,7 +53,7 @@ public class ParserTest extends BaseTest {
 
     @Test
     public void sourceParserGetAllSourcesTest() {
-        List<Source> sourceList = SourceParser.getSourceList();
+        List<Source> sourceList = SourceParser.getAvailableSourceList();
         log.info(sourceList.toString());
         assertTrue(sourceList.size() > 0);
     }
