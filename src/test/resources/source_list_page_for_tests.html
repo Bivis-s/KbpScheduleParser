@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="Колледж, бизнес, право, учеба, курсовые, задания, дипломы, КБП, ТБП, профессия, товаровед, программист, 1С, предприятие, бухгалтер, экономика, экономист, техникум, KBP, TBP, банк, финансы, коммерция, юристы, работа, карьера, технологии, программы, обучение, аналитика"
+          name="keywords"/>
+    <meta content="Колледж безнеса и права - это профессиональное обучение по следующим специальностям: экономика и организация производства, коммерческое дело, банковское дело, бухгалтерский учет, правоведение. Мы используем современные методы обучения и новые технологии для повышения уровня обучения: мультимедийные, программы и т.д."
+          name="description"/>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+    <link href="css/cupertino/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="https://kbp.by/timetable/view_beta_tbp/js/jquery-commons.js" type="text/javascript"></script>
+    <script src="js/common.js" type="text/javascript"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/themes/default.css" rel="stylesheet" type="text/css"/>
+
+    <title>Расписание КБП</title>
+</head>
+<body style="margin-top: 50px;">
+﻿
+<div id="header">
+    <form action="" method="get">
+        <div id="text_search">
+            <span class="style_text">Поиск по расписанию:</span> <input id="table-search" name="q" type="text"/>
+            <input id="button_search" type="submit" value="Показать"/>
+        </div>
+    </form>
+    <div id="right_block">
+        <div id="info"><span class="style_text">
+									</span></div>
+        <div id="options"><!--<a href="#"><div><img src="i/options.png" alt="настройки" /></div></a>--></div>
+    </div>
+</div>
+<div id="options-block">
+    Темы:
+    <ul style="list-style-type: none; list-style-position: inside">
+        <li><a href="?theme=default">Расписание занятий</a></li>
+        <li><a href="?theme=classic">Бело-голубая</a></li>
+        <li><a href="?theme=blue">Голубая</a></li>
+        <li><a href="?theme=bw">Черно-белая</a></li>
+    </ul>
+    <div style="margin-top:20px"><!--<a href="#" id="create-theme"></a>--></div>
+</div>
+<!--
+<div id="dialog" title="Создайте свою тему!">
+    <div style="line-height: 1.5em">Вы можете разработать и предложить свою тему оформления расписания. Уже существующие темы можно найти по адресу http://guki.org/timetable/view_beta/css/themes/</div>
+</div>
+-->
+<div class="find_block">
+    <div class="block_back">
+        <div class="text_h1">Возможно вы имели в виду:</div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=40"> 20</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=44"> 23</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=28"> 25</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=43">106</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=36">108</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=5">109</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=11">118</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=1">119</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=53">123</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=15">127</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=55">133</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=45">18а</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=35">18б</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=67">20</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=14">224</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=57">228</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=66">23</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=58">237</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=50">301</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=24">303</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=29">305</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=13">306</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=8">308</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=7">310</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=20">312</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=6">313</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=19">314</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=12">319</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=38">320</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=48">322</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=49">324</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=46">325</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=17">327</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=22">329</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=10">401</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=60">403</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=23">405</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=42">406</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=32">408</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=31">410</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=37">413</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=33">414</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=30">416</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=54">418</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=63">419</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=9">425</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=16">427</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=52">429</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=4">501</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=61">502</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=56">503</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=59">504</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=39">505</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=2">506</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=64">510</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=21">512</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=62">513</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=34">516</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=25">518</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=18">519</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=26">520</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=51">522</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=47">524</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=27">525</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=3">527</a></div>
+        <div>
+            <span class="type_find">аудитория</span> <a href="?cat=place&amp;id=41">529</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=115">WebДизайн</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=49">АДБанков</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=79">АдмДеликтПраво</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=9">Алексеенко И.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=54">Алырщикова Т.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=22">Амельченя О.А.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=4">АнглЯзы</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=91">Андреева Е.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=71">Анисько Н.С.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=77">АрифмЛогВТ</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=78">Архипова О.С.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=9">Астрономия</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=102">АУДО</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=21">АХД</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=8">Б-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=36">Б-891</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=26">Б-912</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=43">Б-991</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=93">БагласоваЕ.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=47">БагласоваТ.Г.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=25">БанкМаркетинг</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=39">БанкОперации</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=101">Басалыга Л.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=27">БДиСУБД</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=5">БелЛит</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=48">БелЯзПрофЛекс</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=83">БизнесПлан</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=10">Биология</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=69">Бондаренко </a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=110">Брагинский М.А.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=84">БУвОтраслях</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=24">Бурдейко Т</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=49">Бурмакова Е.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=68">БухУчВБанк</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=30">БухУчет</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=40">Вайдо В.П. </a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=57">Василевская А.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=12">Василенко Е.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=68">Веремеева Е.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=50">Виткевич Г.И.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=38">ВнЭкономДеят</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=103">ВоробьеваИ.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=53">Воронец Ж.Г.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=94">Воронцова А.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=43">Гавриленко И.К.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=84">Гальцова О.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=1">География</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=7">Герасимович Ю.А.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=59">ГраждПроцесс</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=18">ГражПраво</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=97">Григораш М.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=98">Григорьева Т.Г.</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=48">Д-013</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=10">Д-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=11">Д-092</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=28">Д-891</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=29">Д-892</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=30">Д-913</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=46">Д-991</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=47">Д-992</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=47">ДенежОбрКредит</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=31">Доп(Мед</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=55">ДопрПодгот</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=19">Егорова А.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=90">Жандарова Е.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=109">Желанникова О.А</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=42">ЖилПраво</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=45">Жуковская Е.К.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=82">Журавлева В.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=30">Завадская А.К.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=99">ЗакупПрЛогист</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=10">Занковец Е.Ю.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=51">ЗащитаНасТерЧС</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=55">Зеневич М.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=32">Зимовилина Д.С.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=91">ЗКИ</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=62">Ивашко Е.А.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=72">ИнтрументПО</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=11">Информа</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=14">ИнформТехнол</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=65">ИнЯзДел</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=17">ИнЯзПро</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=87">ИстГосПрБел</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=7">ИсторияБел</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=5">К-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=24">К-891</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=25">К-912</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=41">К-991</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=63">Кадушкевич З.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=1">Каминская Л.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=102">Кибисова А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=15">Клименко Д.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=89">Клочко Е.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=11">Козлова Е.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=60">Комаровский</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=90">КомДеят</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=29">КомпьютСети</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=21">Конопаева Н.О.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=36">Корнелюк В.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=123">Коррупция</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=29">Кошепарова Д.И.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=26">КПиЯП</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=95">Красковская С.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=33">Кривошеина А.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=13">Кряжева Л.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=42">Кудласевич В.С.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=16">Кудрявцева</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=44">Кудряшова Е.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=16">КультРечиЮр</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=6">Куновская Г.Л.</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=6">Л-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=7">Л-092</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=42">Л-991</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=20">Лазарева Л.Г.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=88">Лишакова Е.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=71">Логистика</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=107">Малафей Д.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=104">Малафей И.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=18">Малахова В.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=2">Математика</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=101">МатемМоделир</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=12">МедПодгот</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=80">Миско А.С.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=100">Михалевич И.М.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=27">Муравицкая А.Ф.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=66">Налогообложени</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=61">НалогПраво</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=44">НемЯзык</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=14">Неткачева Е.Р.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=106">Новик С.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=108">Нос З.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=39">Носевич В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=69">ОАиП</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=54">Обр3-мерГрИзоб</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=78">Обществовед</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=62">ОбщТоваров</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=20">ОргМатОбесСбыт</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=22">ОргПроизв-ва</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=45">ОргТехнТорг</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=88">ОСГН</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=126">ОснИдеолБелГос</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=121">ОснИнжГраф</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=86">ОснКроссПлПрог</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=82">ОснМаркетинга</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=109">ОснМенеджмента</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=107">ОсновыПДиУП</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=113">ОснОхрТруда</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=97">ОснПрава</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=114">ОснПредприним</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=119">ОфисПрограм</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=43">ОфорКадрДокум</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=57">ОхОкрСрЭнерг</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=60">ОхрТруда</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=22">П-015</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=23">П-016</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=1">П-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=2">П-092</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=3">П-093</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=4">П-094</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=52">П-891</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=53">П-892</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=54">П-893</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=39">П-894</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=55">П-915</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=40">П-916</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=18">П-991</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=19">П-992</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=20">П-993</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=21">П-994</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=99">Паскал Е.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=77">Пашковский </a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=51">Пашкун И.Э.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=5">Певец О.А. </a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=58">ПорядокНачПенс</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=52">Потапова А.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=64">Потарусова В.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=85">ПрCрСоздInter</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=76">ПравОбДБ</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=89">ПравОбКомДеят</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=75">ПракАвтУч</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=37">ПракБизПлан</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=112">ПракОргКасРаб</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=108">ПракОснМенедж</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=118">ПракПРПД</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=64">ПрактБухОтч</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=95">ПрактикаАДБ</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=70">ПрактОА</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=110">ПрактПрограм</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=52">ПрактРазрСопр</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=96">ПрактТоваров</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=34">ПрактТрудПр</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=94">ПракЭконОрг</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=100">ПракЮрСл</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=117">ПрикладнаяИнф</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=40">ПрОбОбрГрафИнф</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=104">ПрОснПредприн</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=67">ПРПД</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=116">ПсихолЭтикДО</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=31">Райтузова И.Ш.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=63">РаспрдЛогист</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=36">РевизКонтр</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=103">РекламМенедж</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=34">Ржеутская Н.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=61">Рогалевич </a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=3">РусЛит</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=23">РынокЦенБум</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=87">Сазон Л.Т.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=8">Саксонова Е.Ф.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=67">Саморядов А.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=105">Сватко И.Б.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=81">СемПраво</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=106">СистемПО</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=76">Смелова А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=96">Спильниченко И.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=122">СтандСертПО</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=93">Статистика</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=58">Столбовая Н.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=46">Стригоцкая О.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=25">Суворова И.А.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=80">Судоустройство</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=59">Т-016</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=60">Т-017</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=12">Т-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=13">Т-092</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=14">Т-093</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=15">Т-094</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=16">Т-095</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=17">Т-096</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=61">Т-791</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=62">Т-792</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=63">Т-793</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=64">Т-794</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=65">Т-795</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=51">Т-891</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=31">Т-892</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=32">Т-893</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=33">Т-894</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=34">Т-895</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=38">Т-916</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=35">Т-917</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=49">Т-991</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=56">Т-992</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=57">Т-993</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=50">Т-994</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=58">Т-995</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=41">ТаможПраво</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=50">ТеорВерМатСт</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=28">ТестОтладкаПО</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=124">ТехКомОснКоман</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=4">Тиколович В.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=111">ТрансЛогист</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=53">ТРПО </a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=15">ТрудПраво</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=3">Трунина К.А.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=33">УголПраво</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=92">УголПроцесс</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=46">УправПродаж</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=72">Урбанович Н.Н.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=74">УчетОтчет</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=28">Ушакова Е.С.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=8">Физика</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=24">ФизКультура</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=98">ФинансОрган</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=105">ФинансыКредит</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=83">Фоменко Н.К.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=73">Харитонова Ю.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=6">Химия</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=56">ХозПроцесс</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=19">Ценообразован</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=23">Чернецкая Ж</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=41">Черникова Н.В.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=32">Черчение</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=48">Шавярновска</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=56">Шадырко И.Э.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=79">Шалайко В.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=75">Шаляпин Ю.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=85">Шафоростова Ю.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=38">Шевченко О.Н.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=74">Шишкир Л.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=17">Шкурская К.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=92">Шпиганович Д.А.</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=45">Э-012</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=9">Э-091</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=37">Э-891</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=27">Э-912</a></div>
+        <div>
+            <span class="type_find">группа</span> <a href="?cat=group&amp;id=44">Э-991</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=73">ЭкономОрган</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=35">ЭтикаПсПрДеят</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=66">Юневич Е.И.</a></div>
+        <div>
+            <span class="type_find">предмет</span> <a href="?cat=subject&amp;id=13">ЮрСлужОрг</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=35">Якимович К.О.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=26">Яллина С.А.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=70">Янкун Н.Ю.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=81">Янукович Е.Ф.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=65">Янушкевич Е.В.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=86">Ясинская Я.Я.</a></div>
+        <div>
+            <span class="type_find">преподаватель</span> <a href="?cat=teacher&amp;id=37">Яскевич И.В.</a></div>
+    </div>
+</div>
+</body>
+</html>

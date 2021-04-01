@@ -1,11 +1,11 @@
-package tests.parser;
+package parser.utils;
 
 import org.testng.annotations.Test;
-import parser.utils.StringUtils;
+import parser.BaseParserTest;
 
 import static org.testng.Assert.assertEquals;
 
-public class StringUtilsTest {
+public class StringUtilsTest extends BaseParserTest {
     @Test
     public void cutOutSubStringInTheStartTest() {
         String actual = StringUtils.cutOutSubStrings("Some strange text", "Some ");

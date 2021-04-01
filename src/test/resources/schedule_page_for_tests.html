@@ -1,0 +1,1324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="Колледж, бизнес, право, учеба, курсовые, задания, дипломы, КБП, ТБП, профессия, товаровед, программист, 1С, предприятие, бухгалтер, экономика, экономист, техникум, KBP, TBP, банк, финансы, коммерция, юристы, работа, карьера, технологии, программы, обучение, аналитика"
+          name="keywords"/>
+    <meta content="Колледж безнеса и права - это профессиональное обучение по следующим специальностям: экономика и организация производства, коммерческое дело, банковское дело, бухгалтерский учет, правоведение. Мы используем современные методы обучения и новые технологии для повышения уровня обучения: мультимедийные, программы и т.д."
+          name="description"/>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+    <link href="css/cupertino/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="https://kbp.by/timetable/view_beta_tbp/js/jquery-commons.js" type="text/javascript"></script>
+    <script src="js/common.js" type="text/javascript"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/themes/default.css" rel="stylesheet" type="text/css"/>
+    <title>Расписание Т-893</title>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#slider_left').hover(
+                function () {
+                    $(this).animate({opacity: .6, left: 0});
+                },
+                function () {
+                    $(this).animate({opacity: .3, left: -10});
+                }
+            )
+
+            $('#slider_right').hover(
+                function () {
+                    $(this).animate({opacity: .6, right: 0});
+                },
+                function () {
+                    $(this).animate({opacity: .3, right: -10});
+                }
+            )
+
+            $('#slider_right').click(function () {
+                $(this).hide();
+                $('#right_week').css('position', 'relative').show("slide", {direction: "right"}, 1500);
+                $('#left_week').css('position', 'absolute').hide("slide", {direction: "left"}, 1500, function () {
+                    $('#slider_left').show(200);
+                });
+            })
+
+            $('#slider_left').click(function () {
+                $(this).hide();
+                $('#right_week').css('position', 'relative').hide("slide", {direction: "right"}, 1500);
+                $('#left_week').css('position', 'absolute').show("slide", {direction: "left"}, 1500, function () {
+                    $('#left_week').css('position', 'relative');
+                    $('#slider_right').show(200);
+                });
+            })
+
+            $('.ch_moves').click(function () {
+                if ($(this).attr('checked')) {
+                    $('.pair.added.' + $(this).attr('id')).show();
+                    $('.pair.removed.' + $(this).attr('id')).hide();
+                } else {
+                    $('.pair.added.' + $(this).attr('id')).hide();
+                    $('.pair.removed.' + $(this).attr('id')).show();
+                }
+            })
+
+        })
+    </script>
+
+
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $(".metrika table a").each(function (i) {
+                $(this).attr("id", "ide" + parseInt(i + 1));
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26172548-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+
+    <style>
+        .ui-widget-overlay {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+﻿
+<div id="header">
+    <form action="" method="get">
+        <div id="text_search">
+            <span class="style_text">Поиск по расписанию:</span> <input id="table-search" name="q" type="text"/>
+            <input id="button_search" type="submit" value="Показать"/>
+        </div>
+    </form>
+    <div id="right_block">
+        <div id="info"><span class="style_text">
+				Расписание для группы Т-893					</span></div>
+        <div id="options"><!--<a href="#"><div><img src="i/options.png" alt="настройки" /></div></a>--></div>
+    </div>
+</div>
+<div id="options-block">
+    Темы:
+    <ul style="list-style-type: none; list-style-position: inside">
+        <li><a href="?theme=default">Расписание занятий</a></li>
+        <li><a href="?theme=classic">Бело-голубая</a></li>
+        <li><a href="?theme=blue">Голубая</a></li>
+        <li><a href="?theme=bw">Черно-белая</a></li>
+    </ul>
+    <div style="margin-top:20px"><!--<a href="#" id="create-theme"></a>--></div>
+</div>
+<!--
+<div id="dialog" title="Создайте свою тему!">
+    <div style="line-height: 1.5em">Вы можете разработать и предложить свою тему оформления расписания. Уже существующие темы можно найти по адресу http://guki.org/timetable/view_beta/css/themes/</div>
+</div>
+-->
+<div class="wrap">
+    <div id="wrapper">
+        <div id="slider_left" style="display:none;"><img alt="" src="i/left.png"/></div>
+        <div id="slider_right"><img alt="" src="i/right.png"/></div>
+
+        <div id="content">
+            <div class="find_block">
+
+                <div style="margin: 0 auto; width:300px; padding-top:45px; text-align:center;">
+
+                </div>
+
+                <div style="position:relative;">
+                    <div id="left_week" style="position:relative; width:100%;">
+                        <p class="date">29 марта &mdash; 3 апреля</p>
+                        <p class="today">первая неделя</p>
+                        <!--<p class="today">Ознакомление с печатным вариантом изменений в расписании учебных занятий на доске объявлений ОБЯЗАТЕЛЬНО!</p>-->
+                        <p class="today">Ознакомление с печатным вариантом изменений в расписании учебных занятий на
+                            доске объявлений ОБЯЗАТЕЛЬНО!!!</p>
+
+                        <table style="padding-top:10px;">
+                            <tr>
+                                <th></th>
+                                <th>Пнд</th>
+                                <th>Втр</th>
+                                <th>Срд</th>
+                                <th>Чтв</th>
+                                <th>Птн</th>
+                                <th>Сбт</th>
+                                <th></th>
+                            </tr>
+                            <tr class="zamena">
+                                <th>&nbsp;</th>
+                                <th>
+                                    Замен нет
+                                </th>
+                                <th>
+                                    Замен нет
+                                </th>
+                                <th>
+                                    <label><input checked="checked" class="ch_moves" id="lw_3" type="checkbox"/>
+                                        Показать замены</label></th>
+                                </th>
+                                <th>
+                                    Замен нет
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td class="number">1</td>
+                                <td>
+                                    <!--  pair-id="36" -->
+                                    <div class="pair lw_1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=27">БДиСУБД</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=34">Ржеутская Н.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="288" -->
+                                    <div class="pair lw_2 week week1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=24">ФизКультура</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=50">Виткевич Г.И.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=45">18а</a></div>
+                                        </div>
+                                        <div class="extra">1 неделя</div>
+                                    </div>
+
+
+                                    <!-- pair-number="1" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1403" -->
+                                    <div class="pair lw_3">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="744" -->
+                                    <div class="pair lw_4">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=53">ТРПО </a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=60">Комаровский</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=61">Рогалевич </a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="941" -->
+                                    <div class="pair lw_5">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=102">АУДО</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=101">Басалыга Л.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=33">414</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1199" -->
+                                    <div class="pair lw_6">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=91">ЗКИ</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=80">Миско А.С.</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=63">419</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td class="number">1</td>
+                            </tr>
+                            <tr>
+                                <td class="number">2</td>
+                                <td>
+                                    <!--  pair-id="80" -->
+                                    <div class="pair lw_1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=28">ТестОтладкаПО</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=35">Якимович К.О.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=32">408</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="331" -->
+                                    <div class="pair lw_2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=26">КПиЯП</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1404" -->
+                                    <div class="pair lw_3">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="784" -->
+                                    <div class="pair lw_4">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=24">ФизКультура</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=50">Виткевич Г.И.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=45">18а</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="983" -->
+                                    <div class="pair lw_5">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=85">ПрCрСоздInter</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=92">Шпиганович Д.А.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=60">403</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1250" -->
+                                    <div class="pair lw_6 week week1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=119">ОфисПрограм</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=35">Якимович К.О.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=32">408</a></div>
+                                        </div>
+                                        <div class="extra">1 неделя</div>
+                                    </div>
+
+
+                                    <!-- pair-number="2" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">2</td>
+                            </tr>
+                            <tr>
+                                <td class="number">3</td>
+                                <td>
+                                    <!--  pair-id="136" -->
+                                    <div class="pair lw_1 week week1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=53">ТРПО </a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=60">Комаровский</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=61">Рогалевич </a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=30">416</a></div>
+                                        </div>
+                                        <div class="extra">1 неделя</div>
+                                    </div>
+
+
+                                    <!-- pair-number="3" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="384" -->
+                                    <div class="pair lw_2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=27">БДиСУБД</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=34">Ржеутская Н.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="608" -->
+                                    <div class="pair lw_3">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="831" -->
+                                    <div class="pair lw_4">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=101">МатемМоделир</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=15">Клименко Д.</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=52">429</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1039" -->
+                                    <div class="pair lw_5">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=28">ТестОтладкаПО</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=35">Якимович К.О.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=32">408</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1311" -->
+                                    <div class="pair lw_6">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=26">КПиЯП</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td class="number">3</td>
+                            </tr>
+                            <tr>
+                                <td class="number">4</td>
+                                <td>
+                                    <!-- pair-number="4" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="432" -->
+                                    <div class="pair lw_2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=29">КомпьютСети</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=36">Корнелюк В.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=33">414</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1405" -->
+                                    <div class="pair lw_3 week week1 removed">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra">1 неделя</div>
+                                    </div>
+
+
+                                    <!--  move-id="6442" -->
+                                    <div class="pair lw_3 added">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=120">Пара снята</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=65"></a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- pair-number="4" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="4" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="4" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">4</td>
+                            </tr>
+                            <tr>
+                                <td class="number">5</td>
+                                <td>
+                                    <!-- pair-number="5" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">5</td>
+                            </tr>
+                            <tr>
+                                <td class="number">6</td>
+                                <td>
+                                    <!-- pair-number="6" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">6</td>
+                            </tr>
+                            <tr>
+                                <td class="number">7</td>
+                                <td>
+                                    <!-- pair-number="7" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">7</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="right_week" style="position:relative; display:none; width:100%;">
+                        <p class="date">5 &mdash; 10 апреля</p>
+                        <p class="today">вторая неделя</p>
+                        <table style="padding-top:10px;">
+                            <tr>
+                                <th></th>
+                                <th>Пнд</th>
+                                <th>Втр</th>
+                                <th>Срд</th>
+                                <th>Чтв</th>
+                                <th>Птн</th>
+                                <th>Сбт</th>
+                                <th></th>
+                            </tr>
+                            <tr class="zamena">
+                                <th>&nbsp;</th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th>
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td class="number">1</td>
+                                <td>
+                                    <!--  pair-id="36" -->
+                                    <div class="pair rw_1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=27">БДиСУБД</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=34">Ржеутская Н.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="1" day="2" -->
+                                    <div class="empty-pair"></div>
+                                    <!--  pair-id="289" -->
+                                    <div class="pair rw_2 week week2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=85">ПрCрСоздInter</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=92">Шпиганович Д.А.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=60">403</a></div>
+                                        </div>
+                                        <div class="extra">2 неделя</div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1403" -->
+                                    <div class="pair rw_3">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="744" -->
+                                    <div class="pair rw_4">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=53">ТРПО </a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=60">Комаровский</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=61">Рогалевич </a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="941" -->
+                                    <div class="pair rw_5">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=102">АУДО</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=101">Басалыга Л.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=33">414</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1199" -->
+                                    <div class="pair rw_6">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=91">ЗКИ</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=80">Миско А.С.</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=63">419</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td class="number">1</td>
+                            </tr>
+                            <tr>
+                                <td class="number">2</td>
+                                <td>
+                                    <!--  pair-id="80" -->
+                                    <div class="pair rw_1">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=28">ТестОтладкаПО</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=35">Якимович К.О.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=32">408</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="331" -->
+                                    <div class="pair rw_2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=26">КПиЯП</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1404" -->
+                                    <div class="pair rw_3">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="784" -->
+                                    <div class="pair rw_4">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=24">ФизКультура</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=50">Виткевич Г.И.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=45">18а</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="983" -->
+                                    <div class="pair rw_5">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=85">ПрCрСоздInter</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=92">Шпиганович Д.А.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=60">403</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="2" day="6" -->
+                                    <div class="empty-pair"></div>
+                                    <!--  pair-id="1251" -->
+                                    <div class="pair rw_6 week week2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=102">АУДО</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=101">Басалыга Л.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=33">414</a></div>
+                                        </div>
+                                        <div class="extra">2 неделя</div>
+                                    </div>
+
+                                </td>
+                                <td class="number">2</td>
+                            </tr>
+                            <tr>
+                                <td class="number">3</td>
+                                <td>
+                                    <!-- pair-number="3" day="1" -->
+                                    <div class="empty-pair"></div>
+                                    <!--  pair-id="137" -->
+                                    <div class="pair rw_1 week week2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=29">КомпьютСети</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=36">Корнелюк В.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=33">414</a></div>
+                                        </div>
+                                        <div class="extra">2 неделя</div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="384" -->
+                                    <div class="pair rw_2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=27">БДиСУБД</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=34">Ржеутская Н.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="608" -->
+                                    <div class="pair rw_3">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=52">ПрактРазрСопр</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="831" -->
+                                    <div class="pair rw_4">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=101">МатемМоделир</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=15">Клименко Д.</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=52">429</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1039" -->
+                                    <div class="pair rw_5">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=28">ТестОтладкаПО</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=35">Якимович К.О.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=32">408</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1311" -->
+                                    <div class="pair rw_6">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=26">КПиЯП</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=59">МихалевичВ.Ю.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=54">418</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td class="number">3</td>
+                            </tr>
+                            <tr>
+                                <td class="number">4</td>
+                                <td>
+                                    <!-- pair-number="4" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="432" -->
+                                    <div class="pair rw_2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=29">КомпьютСети</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=36">Корнелюк В.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=2"></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=33">414</a></div>
+                                        </div>
+                                        <div class="extra"></div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="4" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="4" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!--  pair-id="1092" -->
+                                    <div class="pair rw_5 week week2">
+                                        <div class="left-column">
+                                            <div class="subject"><a href="?cat=subject&amp;id=27">БДиСУБД</a></div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id=34">Ржеутская Н.В.</a>
+                                            </div>
+                                            <div class="teacher"><a href="?cat=teacher&amp;id="></a></div>
+                                        </div>
+                                        <div class="right-column">
+                                            <div class="group"><span class="group-span"><a href="?cat=group&amp;id=32">Т-893</a></span>
+                                            </div>
+                                            <div class="place"><a href="?cat=place&amp;id=31">410</a></div>
+                                        </div>
+                                        <div class="extra">2 неделя</div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="4" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">4</td>
+                            </tr>
+                            <tr>
+                                <td class="number">5</td>
+                                <td>
+                                    <!-- pair-number="5" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="5" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">5</td>
+                            </tr>
+                            <tr>
+                                <td class="number">6</td>
+                                <td>
+                                    <!-- pair-number="6" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="6" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">6</td>
+                            </tr>
+                            <tr>
+                                <td class="number">7</td>
+                                <td>
+                                    <!-- pair-number="7" day="1" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="2" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="3" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="4" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="5" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td>
+                                    <!-- pair-number="7" day="6" -->
+                                    <div class="empty-pair"></div>
+
+                                </td>
+                                <td class="number">7</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer_div"></div>
+    </div><!-- #footer -->
+</div><!-- end wrap -->
+
+<div class="metrika">
+    <!--metrika-->
+</div>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+            try {
+                w.yaCounter18277714 = new Ya.Metrika({
+                    id: 18277714,
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true
+                });
+            } catch (e) {
+            }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () {
+                n.parentNode.insertBefore(s, n);
+            };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript>
+    <div><img alt="" src="//mc.yandex.ru/watch/18277714" style="position:absolute; left:-9999px;"/></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+</body>
+</html>
