@@ -8,9 +8,9 @@ import parser.objects.News;
 import java.util.ArrayList;
 import java.util.List;
 
-import static parser.PageParser.getPage;
-import static parser.utils.JsoupUtils.*;
-import static parser.utils.StringUtils.cutOutSubStrings;
+import static by.bivis.kbp.parser.parsers.PageParser.getPage;
+import static by.bivis.kbp.parser.utils.JsoupUtils.*;
+import static by.bivis.kbp.parser.utils.StringUtils.cutOutSubStrings;
 
 public class NewsParser {
     private NewsParser() {

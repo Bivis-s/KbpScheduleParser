@@ -1,4 +1,4 @@
-package parser.utils;
+package by.bivis.kbp.parser.utils;
 
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Element;
@@ -18,10 +18,14 @@ public class JsoupUtils {
     }
 
     public static String getHrefAttribute(Element element) {
-        return element.attr("href");
+        return element.attr("href").trim();
     }
 
     public static String getSrcAttribute(Element element) {
-        return element.attr("src");
+        return element.attr("src").trim();
+    }
+
+    public static String getClassName(Element element) {
+        return element.className();
     }
 }

@@ -9,8 +9,8 @@ import parser.objects.Source;
 import java.util.ArrayList;
 import java.util.List;
 
-import static parser.PageParser.getPage;
-import static parser.utils.JsoupUtils.*;
+import static by.bivis.kbp.parser.parsers.PageParser.getPage;
+import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 
 public class SourceParser {
     private SourceParser() {
@@ -44,7 +44,7 @@ public class SourceParser {
      *
      * @return the source object list
      */
-    public static List<Source> getSourceList() {
+    public static List<Source> getAvailableSourceList() {
         return createSourceList(getSourceElements());
     }
 

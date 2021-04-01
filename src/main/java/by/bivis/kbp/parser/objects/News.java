@@ -1,4 +1,4 @@
-package parser.objects;
+package by.bivis.kbp.parser.objects;
 
 import lombok.Data;
 
