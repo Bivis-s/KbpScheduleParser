@@ -8,8 +8,10 @@ import by.bivis.kbp.parser.objects.schedule.ScheduleSiteRow;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -17,10 +19,14 @@ import static org.testng.Assert.assertTrue;
 
 
 @Log4j2
-public class ScheduleParserTest extends BaseParserTest {
+public class SiteScheduleParserTest extends BaseParserTest {
+    private Source getTestSource() {
+        return SourceParser.getAvailableSourceList().get(118);
+    }
+
     private List<List<ScheduleSiteRow>> getSiteSchedules() {
-        Source source = SourceParser.getAvailableSourceList().get(118);
-        return ScheduleParser.getSiteSchedules(source);
+        Source source = getTestSource();
+        return SiteScheduleParser.getSiteSchedules(source);
     }
 
     @Test
@@ -51,7 +57,7 @@ public class ScheduleParserTest extends BaseParserTest {
     }
 
     @Test
-    public void lessonContentTest(){
+    public void lessonContentTest() {
         Source s0 = new Source("ИнЯзДел", "?cat=subject&id=65", SourceType.SUBJECT, null);
         Source s1 = new Source("Бондаренко", "?cat=teacher&id=69", SourceType.TEACHER, null);
         Source s2 = new Source("Янкун Н.Ю.", "?cat=teacher&id=70", SourceType.TEACHER, null);
@@ -61,5 +67,16 @@ public class ScheduleParserTest extends BaseParserTest {
         ScheduleCell cell = schedule.get(2).getCellList().get(2);
         ScheduleLesson lesson = cell.getLessonList().get(0);
         assertThat(lesson.getSourceList(), hasItems(s0, s1, s2, s3, s4));
+    }
+
+    @Test
+    public void getSiteApprovedRowListTest() {
+        List<List<Boolean>> expectedSiteApprovedRowList =
+                Arrays.asList(
+                        Arrays.asList(true, true, true, true, true, false),
+                        Arrays.asList(false, false, false, false, false, false)
+                );
+        List<List<Boolean>> actualSiteApprovedRowList = SiteScheduleParser.getSiteApprovedRowList(getTestSource());
+        assertThat(actualSiteApprovedRowList, equalTo(expectedSiteApprovedRowList));
     }
 }

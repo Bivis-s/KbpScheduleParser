@@ -28,4 +28,9 @@ public class StringUtils {
         }
         return mainString;
     }
+
+    public static boolean isEmptyIgnoringSpaces(String string) {
+        String trimmedString = string.trim();
+        return trimmedString.equals("");
+    }
 }
