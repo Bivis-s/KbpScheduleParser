@@ -1,8 +1,8 @@
 package tests.parser;
 
+import by.bivis.kbp.parser.parsers.BaseParserTest;
 import by.bivis.kbp.parser.utils.StringUtils;
 import org.testng.annotations.Test;
-import parser.BaseParserTest;
 
 import static org.testng.Assert.assertEquals;
 

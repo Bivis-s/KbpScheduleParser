@@ -1,9 +1,9 @@
-package parser;
+package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.enums.SourceType;
+import by.bivis.kbp.parser.objects.Source;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
-import parser.enums.SourceType;
-import parser.objects.Source;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import static org.testng.Assert.assertEquals;
 public class SourceParserTest extends BaseParserTest {
     @Test
     public void getSourceListTest() {
-        List<Source> sourceList = SourceParser.getSourceList();
+        List<Source> sourceList = SourceParser.getAvailableSourceList();
         assertEquals(sourceList.size(), 364);
     }
 
     @Test
     public void sourceContentTest() {
-        Source source = SourceParser.getSourceList().get(2);
+        Source source = SourceParser.getAvailableSourceList().get(2);
         assertEquals(source.getType(), SourceType.AUDIENCE);
         assertEquals(source.getLinkParameter(), "?cat=place&id=28");
         assertEquals(source.getValue(), "25");

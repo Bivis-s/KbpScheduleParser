@@ -1,15 +1,15 @@
-package parser.utils;
+package by.bivis.kbp.parser.utils;
 
+import by.bivis.kbp.parser.Context;
+import by.bivis.kbp.parser.parsers.BaseParserTest;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.testng.annotations.Test;
-import parser.BaseParserTest;
-import parser.Context;
 
+import static by.bivis.kbp.parser.parsers.PageParser.getPage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static parser.PageParser.getPage;
 
 public class JsoupUtilsTest extends BaseParserTest {
     @Test

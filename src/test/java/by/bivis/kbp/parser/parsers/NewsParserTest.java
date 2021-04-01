@@ -1,7 +1,7 @@
-package parser;
+package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.objects.News;
 import org.testng.annotations.Test;
-import parser.objects.News;
 
 import java.util.List;
 
