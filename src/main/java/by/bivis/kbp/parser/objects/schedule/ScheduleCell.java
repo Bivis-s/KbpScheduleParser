@@ -8,4 +8,8 @@ import java.util.List;
 @Value
 public class ScheduleCell {
     List<ScheduleLesson> lessonList = new ArrayList<>();
+
+    public boolean isEmpty() {
+        return lessonList.isEmpty();
+    }
 }

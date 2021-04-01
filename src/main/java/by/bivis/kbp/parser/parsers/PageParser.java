@@ -1,6 +1,5 @@
 package by.bivis.kbp.parser.parsers;
 
-import by.bivis.kbp.parser.enums.Page;
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,24 +39,11 @@ public final class PageParser {
 
     public static Document getPage(String pageUrlOrHtmlPath) {
         try {
-            log.debug("Try to get page from url '" + pageUrlOrHtmlPath + "'; UserAgent '" + USER_AGENT + "'");
+            log.trace("Try to get page from url '" + pageUrlOrHtmlPath + "'; UserAgent '" + USER_AGENT + "'");
             return getPageFromUrl(pageUrlOrHtmlPath);
         } catch (IllegalArgumentException e) {
-            log.debug("Try to get page from path '" + pageUrlOrHtmlPath + "'");
+            log.trace("Try to get page from path '" + pageUrlOrHtmlPath + "'");
             return getPageFromPath(pageUrlOrHtmlPath);
-        }
-    }
-
-    public static Document getPage(Page page, String stringForConcatenation) {
-        log.debug("Get page '" + page.getValue() + stringForConcatenation + "'; UserAgent '" + USER_AGENT + "'");
-        try {
-            return Jsoup
-                    .connect(page.getValue(stringForConcatenation))
-                    .userAgent(USER_AGENT)
-                    .get();
-        } catch (IOException e) {
-            log.error(e.getMessage());
-            throw new IOError(e);
         }
     }
 }

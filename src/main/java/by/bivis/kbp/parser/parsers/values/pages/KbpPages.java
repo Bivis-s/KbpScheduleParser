@@ -1,4 +1,4 @@
-package parser.values.pages;
+package by.bivis.kbp.parser.parsers.values.pages;
 
 public class KbpPages implements Pages {
     private static final String MAIN_PAGE_URL = "https://kbp.by/";

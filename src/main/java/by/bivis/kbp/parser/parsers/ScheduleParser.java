@@ -1,6 +1,6 @@
 package by.bivis.kbp.parser.parsers;
 
-import by.bivis.kbp.parser.enums.Page;
+import by.bivis.kbp.parser.Context;
 import by.bivis.kbp.parser.enums.SourceType;
 import by.bivis.kbp.parser.errors.EmptyLessonContentError;
 import by.bivis.kbp.parser.errors.NoEnumWithSuchValueError;
@@ -31,7 +31,7 @@ public final class ScheduleParser {
      * @return the Elements, containing two schedule divs (left and right)
      */
     private static Elements getScheduleTables(String sourceLink) {
-        Document document = getPage(Page.SCHEDULE, sourceLink);
+        Document document = getPage(Context.getPages().getSchedulePageUrl(sourceLink));
         return getInnerElements(document, Selector.WEEK_SELECTOR);
     }
 
@@ -43,7 +43,7 @@ public final class ScheduleParser {
             try {
                 Source source = new Source();
                 source.setValue(elementText);
-                source.setLink(getHrefAttribute(linkText));
+                source.setLinkParameter(getHrefAttribute(linkText));
                 source.setType(SourceType.getEnumByEngValue(getClassName(lessonContent)));
                 return source;
             } catch (NoEnumWithSuchValueError ignored) {
@@ -103,7 +103,7 @@ public final class ScheduleParser {
      */
     public static List<List<ScheduleSiteRow>> getSiteSchedules(Source source) {
         List<List<ScheduleSiteRow>> siteSchedules = new ArrayList<>();
-        for (Element schedule : getScheduleTables(source.getLink())) {
+        for (Element schedule : getScheduleTables(source.getLinkParameter())) {
             siteSchedules.add(createScheduleSiteRowList(schedule));
         }
         return siteSchedules;

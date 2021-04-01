@@ -1,4 +1,4 @@
-package parser.values.pages;
+package by.bivis.kbp.parser.parsers.values.pages;
 
 public interface Pages {
     String getMainPageUrl();

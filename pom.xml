@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>by.bivis.kbp</groupId>
-    <artifactId>kbp_schedule_parser</artifactId>
-    <version>0.0.3</version>
+    <groupId>by.bivis.kbp.parser</groupId>
+    <artifactId>KbpScheduleParser</artifactId>
+    <version>0.0.4</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,8 @@
         <log4j-core.version>2.14.0</log4j-core.version>
         <sqlite-jdbc.version>3.34.0</sqlite-jdbc.version>
         <jsoup.version>1.13.1</jsoup.version>
-        <testng.version>7.3.0</testng.version>
+        <testng.version>7.1.0</testng.version>
+        <hamcrest.version>2.2</hamcrest.version>
     </properties>
 
     <dependencies>
@@ -44,6 +45,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,9 +1,9 @@
-package parser;
+package by.bivis.kbp.parser;
 
+import by.bivis.kbp.parser.parsers.values.pages.KbpPages;
+import by.bivis.kbp.parser.parsers.values.pages.Pages;
 import lombok.Getter;
 import lombok.Setter;
-import parser.values.pages.KbpPages;
-import parser.values.pages.Pages;
 
 public class Context {
     @Getter

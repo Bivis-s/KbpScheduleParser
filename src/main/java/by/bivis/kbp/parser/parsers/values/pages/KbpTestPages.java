@@ -1,4 +1,4 @@
-package parser.values.pages;
+package by.bivis.kbp.parser.parsers.values.pages;
 
 public class KbpTestPages implements Pages {
     private static final String MAIN_PAGE_URL = "src/test/resources/main_page_for_tests.html";

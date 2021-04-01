@@ -1,9 +1,10 @@
-package parser;
+package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.Context;
+import by.bivis.kbp.parser.objects.News;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import parser.objects.News;
 
 import java.util.ArrayList;
 import java.util.List;
