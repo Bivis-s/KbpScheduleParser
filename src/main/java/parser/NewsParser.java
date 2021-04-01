@@ -3,7 +3,6 @@ package parser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import parser.enums.Page;
 import parser.objects.News;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class NewsParser {
     }
 
     private static Elements getNewsCellElements() {
-        Document document = getPage(Page.MAIN);
+        Document document = getPage(Context.getPages().getMainPageUrl());
         return getInnerElements(document, Selector.NEWS_CELL_SELECTOR);
     }
 

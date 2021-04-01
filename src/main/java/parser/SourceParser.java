@@ -3,7 +3,6 @@ package parser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import parser.enums.Page;
 import parser.enums.SourceType;
 import parser.objects.Source;
 
@@ -18,7 +17,7 @@ public class SourceParser {
     }
 
     private static Elements getSourceElements() {
-        Document document = getPage(Page.SOURCE_LIST);
+        Document document = getPage(Context.getPages().getSourceListPageUrl());
         return getInnerElements(document, Selector.SOURCE_LINE_SELECTOR);
     }
 
@@ -28,7 +27,7 @@ public class SourceParser {
         source.setType(SourceType.getEnumByValue(sourceTitle.text().trim()));
         Element sourceValue = getInnerElement(element, Selector.SOURCE_VALUE_SELECTOR);
         source.setValue(sourceValue.text().trim());
-        source.setLink(getHrefAttribute(sourceValue));
+        source.setLinkParameter(getHrefAttribute(sourceValue));
         return source;
     }
 

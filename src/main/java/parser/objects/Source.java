@@ -6,6 +6,6 @@ import parser.enums.SourceType;
 @Data
 public class Source {
     private String value;
-    private String link;
+    private String linkParameter;
     private SourceType type;
 }
