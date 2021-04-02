@@ -1,6 +1,5 @@
 package by.bivis.kbp.parser.parsers;
 
-import by.bivis.kbp.parser.Context;
 import by.bivis.kbp.parser.objects.News;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,7 +8,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.bivis.kbp.parser.parsers.PageParser.getPage;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 import static by.bivis.kbp.parser.utils.StringUtils.cutOutSubStrings;
 
@@ -17,9 +15,8 @@ public class NewsParser {
     private NewsParser() {
     }
 
-    private static Elements getNewsCellElements() {
-        Document document = getPage(Context.getPages().getMainPageUrl());
-        return getInnerElements(document, Selector.NEWS_CELL_SELECTOR);
+    private static Elements getNewsCellElements(Document newsPage) {
+        return getInnerElements(newsPage, Selector.NEWS_CELL_SELECTOR);
     }
 
     private static News createNews(Element newsElement) {
@@ -46,8 +43,8 @@ public class NewsParser {
      *
      * @return the news object list
      */
-    public static List<News> getNews() {
-        return createNewsList(getNewsCellElements());
+    public static List<News> getNews(Document newsPage) {
+        return createNewsList(getNewsCellElements(newsPage));
     }
 
     private static class Selector {

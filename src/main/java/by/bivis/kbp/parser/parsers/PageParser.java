@@ -1,5 +1,7 @@
 package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.Context;
+import by.bivis.kbp.parser.objects.Source;
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,5 +47,29 @@ public final class PageParser {
             log.trace("Try to get page from path '" + pageUrlOrHtmlPath + "'");
             return getPageFromPath(pageUrlOrHtmlPath);
         }
+    }
+
+
+    /**
+     * Returns schedule page.
+     *
+     * @param source the source object
+     * @return the schedule page
+     */
+    public static Document getSchedulePage(Source source) {
+        return getPage(Context.getPages().getSchedulePageUrl(source.getLinkParameter()));
+    }
+
+    /**
+     * Returns news page.
+     *
+     * @return the news page
+     */
+    public static Document getNewsPage() {
+        return getPage(Context.getPages().getNewsPageUrl());
+    }
+
+    public static Document getSourceListPage() {
+        return getPage(Context.getPages().getSourceListPageUrl());
     }
 }

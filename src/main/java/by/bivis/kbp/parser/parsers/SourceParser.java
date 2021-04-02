@@ -10,16 +10,14 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.bivis.kbp.parser.parsers.PageParser.getPage;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 
 public class SourceParser {
     private SourceParser() {
     }
 
-    private static Elements getSourceElements() {
-        Document document = getPage(Context.getPages().getSourceListPageUrl());
-        return getInnerElements(document, Selector.SOURCE_LINE_SELECTOR);
+    private static Elements getSourceElements(Document sourceListPage) {
+        return getInnerElements(sourceListPage, Selector.SOURCE_LINE_SELECTOR);
     }
 
     private static Source createSource(Element element) {
@@ -45,8 +43,8 @@ public class SourceParser {
      *
      * @return the source object list
      */
-    public static List<Source> getAvailableSourceList() {
-        return createSourceList(getSourceElements());
+    public static List<Source> getAvailableSourceList(Document sourceListPage) {
+        return createSourceList(getSourceElements(sourceListPage));
     }
 
     private static class Selector {

@@ -16,7 +16,6 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.bivis.kbp.parser.parsers.PageParser.getPage;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 import static by.bivis.kbp.parser.utils.StringUtils.isEmptyIgnoringSpaces;
 
@@ -28,12 +27,11 @@ public final class SiteScheduleParser {
     /**
      * Returns left and right schedule tables
      *
-     * @param sourceLink the source link, for example "?cat=subject&id=24"
+     * @param schedulePage the schedule page Document
      * @return the Elements, containing two schedule divs (left and right)
      */
-    private static Elements getScheduleTables(String sourceLink) {
-        Document document = getPage(Context.getPages().getSchedulePageUrl(sourceLink));
-        return getInnerElements(document, Selector.WEEK_SELECTOR);
+    private static Elements getScheduleTables(Document schedulePage) {
+        return getInnerElements(schedulePage, Selector.WEEK_SELECTOR);
     }
 
     private static Source createSourceFromLessonContent(Element lessonContent) {
@@ -95,11 +93,12 @@ public final class SiteScheduleParser {
     /**
      * Returns two lists of ScheduleSiteRow: for left (0) and right (1) schedules
      *
+     * @param schedulePage the schedule page Document
      * @return the site schedules list
      */
-    public static List<List<ScheduleSiteRow>> getSiteSchedules(Source source) {
+    public static List<List<ScheduleSiteRow>> getSiteSchedules(Document schedulePage) {
         List<List<ScheduleSiteRow>> siteSchedules = new ArrayList<>();
-        for (Element schedule : getScheduleTables(source.getLinkParameter())) {
+        for (Element schedule : getScheduleTables(schedulePage)) {
             siteSchedules.add(createScheduleSiteRowList(schedule));
         }
         return siteSchedules;
@@ -122,12 +121,12 @@ public final class SiteScheduleParser {
      * If the approved cell is not empty, true (it means that the schedule column is approved and will not be changed),
      * Else, false
      *
-     * @param source the source
+     * @param schedulePage the schedule page Document
      * @return the site approved row list
      */
-    public static List<List<Boolean>> getSiteApprovedRowList(Source source) {
+    public static List<List<Boolean>> getSiteApprovedRowList(Document schedulePage) {
         List<List<Boolean>> siteApprovedRowList = new ArrayList<>();
-        for (Element schedule : getScheduleTables(source.getLinkParameter())) {
+        for (Element schedule : getScheduleTables(schedulePage)) {
             siteApprovedRowList.add(createApprovedListForSchedule(schedule));
         }
         return siteApprovedRowList;

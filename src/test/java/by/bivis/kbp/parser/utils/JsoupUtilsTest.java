@@ -23,7 +23,7 @@ public class JsoupUtilsTest extends BaseParserTest {
     @Test
     public void getInnerElementTest() {
         String cssSelector = "[id~=site-main] [class~=entry-header] h1";
-        Document document = getPage(Context.getPages().getMainPageUrl());
+        Document document = getPage(Context.getPages().getNewsPageUrl());
         String newsTitleText = JsoupUtils.getInnerElement(document, cssSelector).text();
         assertTrue(newsTitleText.contains("Колледж бизнеса и права"));
     }
@@ -38,7 +38,7 @@ public class JsoupUtilsTest extends BaseParserTest {
 
     @Test
     public void getSrcAttributeTest() {
-        Document document = getPage(Context.getPages().getMainPageUrl());
+        Document document = getPage(Context.getPages().getNewsPageUrl());
         Element element = JsoupUtils.getInnerElement(document,
                 "[src='https://kbp.by/wp-content/uploads/2021/03/praktika-BD.jpg']");
         String src = JsoupUtils.getSrcAttribute(element);

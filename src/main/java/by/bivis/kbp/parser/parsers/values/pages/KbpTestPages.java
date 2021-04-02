@@ -6,7 +6,7 @@ public class KbpTestPages implements Pages {
     private static final String SOURCE_LIST_URL = "src/test/resources/source_list_page_for_tests.html";
 
     @Override
-    public String getMainPageUrl() {
+    public String getNewsPageUrl() {
         return MAIN_PAGE_URL;
     }
 

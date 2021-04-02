@@ -1,7 +1,7 @@
 package by.bivis.kbp.parser.parsers.values.pages;
 
 public interface Pages {
-    String getMainPageUrl();
+    String getNewsPageUrl();
 
     String getSourceListPageUrl();
 

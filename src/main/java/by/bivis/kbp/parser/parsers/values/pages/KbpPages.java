@@ -6,7 +6,7 @@ public class KbpPages implements Pages {
     private static final String SOURCE_LIST_URL = BASE_SCHEDULE_URL + "?q=";
 
     @Override
-    public String getMainPageUrl() {
+    public String getNewsPageUrl() {
         return MAIN_PAGE_URL;
     }
 

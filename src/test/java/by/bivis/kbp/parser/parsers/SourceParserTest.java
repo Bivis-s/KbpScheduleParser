@@ -7,19 +7,20 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static by.bivis.kbp.parser.parsers.PageParser.getSourceListPage;
 import static org.testng.Assert.assertEquals;
 
 @Log4j2
 public class SourceParserTest extends BaseParserTest {
     @Test
     public void getSourceListTest() {
-        List<Source> sourceList = SourceParser.getAvailableSourceList();
+        List<Source> sourceList = SourceParser.getAvailableSourceList(getSourceListPage());
         assertEquals(sourceList.size(), 364);
     }
 
     @Test
     public void sourceContentTest() {
-        Source source = SourceParser.getAvailableSourceList().get(2);
+        Source source = SourceParser.getAvailableSourceList(getSourceListPage()).get(2);
         assertEquals(source.getType(), SourceType.AUDIENCE);
         assertEquals(source.getLinkParameter(), "?cat=place&id=28");
         assertEquals(source.getValue(), "25");

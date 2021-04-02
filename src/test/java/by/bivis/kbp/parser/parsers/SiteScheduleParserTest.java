@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static by.bivis.kbp.parser.parsers.PageParser.getSchedulePage;
+import static by.bivis.kbp.parser.parsers.PageParser.getSourceListPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,12 +23,12 @@ import static org.testng.Assert.assertTrue;
 @Log4j2
 public class SiteScheduleParserTest extends BaseParserTest {
     private Source getTestSource() {
-        return SourceParser.getAvailableSourceList().get(118);
+        return SourceParser.getAvailableSourceList(getSourceListPage()).get(118);
     }
 
     private List<List<ScheduleSiteRow>> getSiteSchedules() {
         Source source = getTestSource();
-        return SiteScheduleParser.getSiteSchedules(source);
+        return SiteScheduleParser.getSiteSchedules(getSchedulePage(source));
     }
 
     @Test
@@ -76,7 +78,8 @@ public class SiteScheduleParserTest extends BaseParserTest {
                         Arrays.asList(true, true, true, true, true, false),
                         Arrays.asList(false, false, false, false, false, false)
                 );
-        List<List<Boolean>> actualSiteApprovedRowList = SiteScheduleParser.getSiteApprovedRowList(getTestSource());
+        List<List<Boolean>> actualSiteApprovedRowList =
+                SiteScheduleParser.getSiteApprovedRowList(getSchedulePage(getTestSource()));
         assertThat(actualSiteApprovedRowList, equalTo(expectedSiteApprovedRowList));
     }
 }
