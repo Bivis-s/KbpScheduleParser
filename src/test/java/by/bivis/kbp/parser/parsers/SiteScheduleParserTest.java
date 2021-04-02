@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static by.bivis.kbp.parser.parsers.PageParser.getSchedulePage;
-import static by.bivis.kbp.parser.parsers.PageParser.getSourceListPage;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,10 +21,6 @@ import static org.testng.Assert.assertTrue;
 
 @Log4j2
 public class SiteScheduleParserTest extends BaseParserTest {
-    private Source getTestSource() {
-        return SourceParser.getAvailableSourceList(getSourceListPage()).get(118);
-    }
-
     private List<List<ScheduleSiteRow>> getSiteSchedules() {
         Source source = getTestSource();
         return SiteScheduleParser.getSiteSchedules(getSchedulePage(source));
@@ -60,11 +55,11 @@ public class SiteScheduleParserTest extends BaseParserTest {
 
     @Test
     public void lessonContentTest() {
-        Source s0 = new Source("ИнЯзДел", "?cat=subject&id=65", SourceType.SUBJECT, null);
-        Source s1 = new Source("Бондаренко", "?cat=teacher&id=69", SourceType.TEACHER, null);
-        Source s2 = new Source("Янкун Н.Ю.", "?cat=teacher&id=70", SourceType.TEACHER, null);
-        Source s3 = new Source("Д-013", "?cat=group&id=48", SourceType.GROUP, null);
-        Source s4 = new Source("228", "?cat=place&id=57", SourceType.AUDIENCE, null);
+        Source s0 = new Source("ИнЯзДел", "?cat=subject&id=65", SourceType.SUBJECT);
+        Source s1 = new Source("Бондаренко", "?cat=teacher&id=69", SourceType.TEACHER);
+        Source s2 = new Source("Янкун Н.Ю.", "?cat=teacher&id=70", SourceType.TEACHER);
+        Source s3 = new Source("Д-013", "?cat=group&id=48", SourceType.GROUP);
+        Source s4 = new Source("228", "?cat=place&id=57", SourceType.AUDIENCE);
         List<ScheduleSiteRow> schedule = getSiteSchedules().get(0);
         ScheduleCell cell = schedule.get(2).getCellList().get(2);
         ScheduleLesson lesson = cell.getLessonList().get(0);
