@@ -11,7 +11,7 @@ import java.util.List;
 
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 
-public class SourceParser {
+class SourceParser {
     private SourceParser() {
     }
 

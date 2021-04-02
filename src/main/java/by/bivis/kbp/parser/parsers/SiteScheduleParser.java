@@ -7,7 +7,6 @@ import by.bivis.kbp.parser.objects.Source;
 import by.bivis.kbp.parser.objects.schedule.ScheduleCell;
 import by.bivis.kbp.parser.objects.schedule.ScheduleLesson;
 import by.bivis.kbp.parser.objects.schedule.ScheduleSiteRow;
-import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -18,8 +17,7 @@ import java.util.List;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 import static by.bivis.kbp.parser.utils.StringUtils.isEmptyIgnoringSpaces;
 
-@Log4j2
-public final class SiteScheduleParser {
+class SiteScheduleParser {
     private SiteScheduleParser() {
     }
 

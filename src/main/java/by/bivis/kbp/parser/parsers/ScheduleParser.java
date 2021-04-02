@@ -14,7 +14,7 @@ import static by.bivis.kbp.parser.parsers.PageParser.getSchedulePage;
 import static by.bivis.kbp.parser.parsers.SiteScheduleParser.getSiteApprovedRowList;
 import static by.bivis.kbp.parser.parsers.SiteScheduleParser.getSiteSchedules;
 
-public class ScheduleParser {
+class ScheduleParser {
 
     /**
      * Flips the schedule from the site, creates ScheduleColumns from ScheduleSiteRows
@@ -85,7 +85,7 @@ public class ScheduleParser {
      * @param source the source
      * @return the schedule
      */
-    public static Schedule getSchedule(Source source) {
+    protected static Schedule getSchedule(Source source) {
         Document schedulePage = getSchedulePage(source);
         List<ScheduleColumn> unitedScheduleColumnList = createUnitedScheduleColumnList(getSiteSchedules(schedulePage));
         List<Boolean> unitedColumnApprovedList = createUnitedColumnApprovedList(getSiteApprovedRowList(schedulePage));

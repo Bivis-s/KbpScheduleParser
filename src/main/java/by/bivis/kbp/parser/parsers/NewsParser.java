@@ -11,7 +11,7 @@ import java.util.List;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 import static by.bivis.kbp.parser.utils.StringUtils.cutOutSubStrings;
 
-public class NewsParser {
+class NewsParser {
     private NewsParser() {
     }
 
@@ -43,7 +43,7 @@ public class NewsParser {
      *
      * @return the news object list
      */
-    public static List<News> getNews(Document newsPage) {
+    protected static List<News> getNews(Document newsPage) {
         return createNewsList(getNewsCellElements(newsPage));
     }
 

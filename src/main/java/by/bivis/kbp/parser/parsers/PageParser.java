@@ -1,6 +1,6 @@
 package by.bivis.kbp.parser.parsers;
 
-import by.bivis.kbp.parser.Context;
+import by.bivis.kbp.parser.context.Context;
 import by.bivis.kbp.parser.objects.Source;
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.Jsoup;
@@ -11,7 +11,7 @@ import java.io.IOError;
 import java.io.IOException;
 
 @Log4j2
-public final class PageParser {
+class PageParser {
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36";
 
     private PageParser() {
@@ -39,7 +39,13 @@ public final class PageParser {
         }
     }
 
-    public static Document getPage(String pageUrlOrHtmlPath) {
+    /**
+     * Returns page document by url or html file path
+     *
+     * @param pageUrlOrHtmlPath url or html file path
+     * @return page document
+     */
+    protected static Document getPage(String pageUrlOrHtmlPath) {
         try {
             log.trace("Try to get page from url '" + pageUrlOrHtmlPath + "'; UserAgent '" + USER_AGENT + "'");
             return getPageFromUrl(pageUrlOrHtmlPath);
@@ -56,7 +62,7 @@ public final class PageParser {
      * @param source the source object
      * @return the schedule page
      */
-    public static Document getSchedulePage(Source source) {
+    protected static Document getSchedulePage(Source source) {
         return getPage(Context.getPages().getSchedulePageUrl(source.getLinkParameter()));
     }
 
@@ -65,11 +71,11 @@ public final class PageParser {
      *
      * @return the news page
      */
-    public static Document getNewsPage() {
+    protected static Document getNewsPage() {
         return getPage(Context.getPages().getNewsPageUrl());
     }
 
-    public static Document getSourceListPage() {
+    protected static Document getSourceListPage() {
         return getPage(Context.getPages().getSourceListPageUrl());
     }
 }

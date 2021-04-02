@@ -1,4 +1,4 @@
-package by.bivis.kbp.parser;
+package by.bivis.kbp.parser.context;
 
 import by.bivis.kbp.parser.parsers.values.pages.KbpPages;
 import by.bivis.kbp.parser.parsers.values.pages.Pages;

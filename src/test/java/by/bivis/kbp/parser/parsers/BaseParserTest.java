@@ -1,6 +1,6 @@
 package by.bivis.kbp.parser.parsers;
 
-import by.bivis.kbp.parser.Context;
+import by.bivis.kbp.parser.context.Context;
 import by.bivis.kbp.parser.objects.Source;
 import by.bivis.kbp.parser.objects.schedule.Schedule;
 import by.bivis.kbp.parser.parsers.values.pages.KbpTestPages;
