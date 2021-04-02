@@ -1,6 +1,5 @@
 package by.bivis.kbp.parser.parsers;
 
-import by.bivis.kbp.parser.Context;
 import by.bivis.kbp.parser.enums.SourceType;
 import by.bivis.kbp.parser.objects.Source;
 import org.jsoup.nodes.Document;

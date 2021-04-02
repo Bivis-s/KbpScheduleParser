@@ -11,4 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ScheduleLesson {
     List<Source> sourceList = new ArrayList<>();
+
+    //TODO IMPLEMENT getTeacherList, getGroup etc.
 }

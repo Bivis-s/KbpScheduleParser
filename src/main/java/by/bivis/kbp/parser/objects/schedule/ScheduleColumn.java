@@ -1,19 +1,15 @@
 package by.bivis.kbp.parser.objects.schedule;
 
-import lombok.Value;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Value
+@Data
+@NoArgsConstructor
 public class ScheduleColumn {
-    List<ScheduleCell> cellList = new ArrayList<>();
-    Date parsingDate;
-    boolean isApproved;
-
-    public ScheduleColumn(Date parsingDate, boolean isApproved) {
-        this.parsingDate = parsingDate;
-        this.isApproved = isApproved;
-    }
+    private List<ScheduleCell> cellList = new ArrayList<>();
+    private boolean isApproved;
 }
