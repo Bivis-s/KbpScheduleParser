@@ -15,6 +15,13 @@ import static by.bivis.kbp.parser.parsers.SiteScheduleParser.getSiteApprovedRowL
 import static by.bivis.kbp.parser.parsers.SiteScheduleParser.getSiteSchedules;
 
 public class ScheduleParser {
+
+    /**
+     * Flips the schedule from the site, creates ScheduleColumns from ScheduleSiteRows
+     *
+     * @param scheduleSiteRowList the site schedule row
+     * @return schedule columns
+     */
     private static List<ScheduleColumn> createScheduleColumnList(List<ScheduleSiteRow> scheduleSiteRowList) {
         List<ScheduleColumn> scheduleColumnList = new ArrayList<>();
         int scheduleTableWidth = scheduleSiteRowList.get(0).getCellList().size();
@@ -28,6 +35,12 @@ public class ScheduleParser {
         return scheduleColumnList;
     }
 
+    /**
+     * Joins two site schedules to one schedule column list
+     *
+     * @param siteSchedules two site schedules
+     * @return joined schedule column list
+     */
     private static List<ScheduleColumn> createUnitedScheduleColumnList(List<List<ScheduleSiteRow>> siteSchedules) {
         List<ScheduleColumn> unitedScheduleColumnList = new ArrayList<>();
         for (List<ScheduleSiteRow> scheduleSiteRows : siteSchedules) {
@@ -36,6 +49,12 @@ public class ScheduleParser {
         return unitedScheduleColumnList;
     }
 
+    /**
+     * Joins two site schedule approved rows into one list
+     *
+     * @param approvedLists two site schedule approved rows
+     * @return joined approved list
+     */
     private static List<Boolean> createUnitedColumnApprovedList(List<List<Boolean>> approvedLists) {
         List<Boolean> unitedColumnApprovedList = new ArrayList<>();
         for (List<Boolean> approvedList : approvedLists) {
@@ -44,6 +63,13 @@ public class ScheduleParser {
         return unitedColumnApprovedList;
     }
 
+    /**
+     * Returns a schedule column list from site schedules with approved parameter
+     *
+     * @param unitedScheduleColumnList united schedule column list
+     * @param unitedColumnApprovedList united column approved list
+     * @return schedule column list
+     */
     private static List<ScheduleColumn> createScheduleColumns(List<ScheduleColumn> unitedScheduleColumnList,
                                                               List<Boolean> unitedColumnApprovedList) {
         for (int i = 0; i < unitedScheduleColumnList.size(); i++) {
@@ -53,6 +79,12 @@ public class ScheduleParser {
         return unitedScheduleColumnList;
     }
 
+    /**
+     * Returns a schedule by source from the site
+     *
+     * @param source the source
+     * @return the schedule
+     */
     public static Schedule getSchedule(Source source) {
         Document schedulePage = getSchedulePage(source);
         List<ScheduleColumn> unitedScheduleColumnList = createUnitedScheduleColumnList(getSiteSchedules(schedulePage));

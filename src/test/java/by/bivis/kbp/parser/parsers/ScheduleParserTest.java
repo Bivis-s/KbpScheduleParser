@@ -15,10 +15,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ScheduleParserTest extends BaseParserTest {
-    private Schedule getTestSchedule() {
-        return ScheduleParser.getSchedule(getTestSource());
-    }
-
     @Test
     public void scheduleSizeTest() {
         int expectedScheduleSize = 12;
