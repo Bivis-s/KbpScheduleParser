@@ -1,5 +1,6 @@
 package by.bivis.kbp.parser.parsers;
 
+import by.bivis.kbp.parser.errors.ElementNotFoundError;
 import by.bivis.kbp.parser.objects.News;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +27,11 @@ class NewsParser {
         news.setArticleLink(getHrefAttribute(title));
         String caption = getInnerElement(newsElement, Selector.NEWS_CAPTION_SELECTOR).text();
         news.setCaption(cutOutSubStrings(caption, "(далее…)").trim());
-        news.setImgLink(getSrcAttribute(getInnerElement(newsElement, Selector.NEWS_IMG_SELECTOR)));
+        try {
+            news.setImgLink(getSrcAttribute(getInnerElement(newsElement, Selector.NEWS_IMG_SELECTOR)));
+        } catch (ElementNotFoundError e) {
+            news.setImgLink(null);
+        }
         return news;
     }
 
