@@ -13,6 +13,7 @@ import java.util.List;
 import static by.bivis.kbp.parser.parsers.PageParser.getSchedulePage;
 import static by.bivis.kbp.parser.parsers.SiteScheduleParser.getSiteApprovedRowList;
 import static by.bivis.kbp.parser.parsers.SiteScheduleParser.getSiteSchedules;
+import static by.bivis.kbp.parser.utils.DateUtils.getCurrentUnixTime;
 
 class ScheduleParser {
 
@@ -90,6 +91,6 @@ class ScheduleParser {
         List<ScheduleColumn> unitedScheduleColumnList = createUnitedScheduleColumnList(getSiteSchedules(schedulePage));
         List<Boolean> unitedColumnApprovedList = createUnitedColumnApprovedList(getSiteApprovedRowList(schedulePage));
         List<ScheduleColumn> columns = createScheduleColumns(unitedScheduleColumnList, unitedColumnApprovedList);
-        return new Schedule(new Date(), source, columns);
+        return new Schedule(getCurrentUnixTime(), source, columns);
     }
 }

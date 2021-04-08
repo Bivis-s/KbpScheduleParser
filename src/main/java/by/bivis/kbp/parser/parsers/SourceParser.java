@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.bivis.kbp.parser.utils.DateUtils.getCurrentUnixTime;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 
 class SourceParser {
@@ -26,6 +27,7 @@ class SourceParser {
         Element sourceValue = getInnerElement(element, Selector.SOURCE_VALUE_SELECTOR);
         source.setValue(sourceValue.text().trim());
         source.setLinkParameter(getHrefAttribute(sourceValue));
+        source.setParsingDate(getCurrentUnixTime());
         return source;
     }
 

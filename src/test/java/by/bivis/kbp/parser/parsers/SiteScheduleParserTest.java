@@ -49,7 +49,7 @@ public class SiteScheduleParserTest extends BaseParserTest {
     public void scheduleCellSizeTest() {
         List<ScheduleSiteRow> schedule = getSiteSchedules().get(0);
         ScheduleCell cell = schedule.get(2).getCellList().get(0);
-        List<ScheduleLesson> lessons = cell.getLessonList();
+        List<ScheduleLesson> lessons = cell.getLessons();
         assertEquals(lessons.size(), 2);
     }
 
@@ -62,7 +62,7 @@ public class SiteScheduleParserTest extends BaseParserTest {
         Source s4 = new Source("228", "?cat=place&id=57", SourceType.AUDIENCE);
         List<ScheduleSiteRow> schedule = getSiteSchedules().get(0);
         ScheduleCell cell = schedule.get(2).getCellList().get(2);
-        ScheduleLesson lesson = cell.getLessonList().get(0);
+        ScheduleLesson lesson = cell.getLessons().get(0);
         assertThat(lesson.getSourceList(), hasItems(s0, s1, s2, s3, s4));
     }
 

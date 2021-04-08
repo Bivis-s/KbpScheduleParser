@@ -1,20 +1,45 @@
 package by.bivis.kbp.parser.objects.schedule;
 
 import by.bivis.kbp.parser.objects.Source;
-import lombok.Value;
+import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static by.bivis.kbp.parser.utils.DateUtils.getDayNumber;
 
-@Value
+@Entity
+@Table (name = "schedules")
+@NoArgsConstructor
+@Getter @Setter
+@EqualsAndHashCode
 public class Schedule {
-    Date parsingDate;
-    Source source;
-    List<ScheduleColumn> columns;
+
+    @Id
+    @Setter(AccessLevel.NONE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "parsing_date")
+    private long parsingDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Source source;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "schedules_columns",
+    joinColumns = @JoinColumn(name = "schedule_id"),
+    inverseJoinColumns = @JoinColumn(name = "column_id"))
+    private List<ScheduleColumn> columns;
+
+    public Schedule(long parsingDate, Source source, List<ScheduleColumn> columns) {
+        this.parsingDate = parsingDate;
+        this.source = source;
+        this.columns = columns;
+    }
 
     /**
      * Returns today schedule. On Sunday returns Monday's schedule

@@ -14,4 +14,8 @@ public class DateUtils {
     public static int getDayNumber(LocalDate date) {
         return date.getDayOfWeek().getValue();
     }
+
+    public static long getCurrentUnixTime() {
+        return System.currentTimeMillis() / 1000L;
+    }
 }

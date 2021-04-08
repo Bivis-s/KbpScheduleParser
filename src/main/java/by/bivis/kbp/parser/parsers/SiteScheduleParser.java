@@ -63,7 +63,7 @@ class SiteScheduleParser {
         Elements lessons = getInnerElements(cell, Selector.SCHEDULE_LESSON_SELECTOR);
         ScheduleCell scheduleCell = new ScheduleCell();
         for (Element lesson : lessons) {
-            scheduleCell.getLessonList().add(createScheduleLesson(lesson));
+            scheduleCell.getLessons().add(createScheduleLesson(lesson));
         }
         return scheduleCell;
     }

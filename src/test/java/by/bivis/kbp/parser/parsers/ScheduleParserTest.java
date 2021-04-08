@@ -26,7 +26,7 @@ public class ScheduleParserTest extends BaseParserTest {
     public void scheduleContentTest() {
         Source expectedSource = new Source("ИнформТехнол", "?cat=subject&id=14", SourceType.SUBJECT);
         Schedule schedule = getTestSchedule();
-        List<Source> actualSourceList = schedule.getColumns().get(5).getCellList().get(3).getLessonList().get(0).getSourceList();
+        List<Source> actualSourceList = schedule.getColumns().get(5).getCellList().get(3).getLessons().get(0).getSourceList();
         assertThat(actualSourceList, hasItem(expectedSource));
     }
 
@@ -50,7 +50,7 @@ public class ScheduleParserTest extends BaseParserTest {
         for (ScheduleColumn scheduleColumn : schedule.getColumns()) {
             System.out.println("Is approved: " + scheduleColumn.isApproved());
             for (ScheduleCell cell : scheduleColumn.getCellList()) {
-                System.out.println(cell.getLessonList());
+                System.out.println(cell.getLessons());
             }
             System.out.println();
         }

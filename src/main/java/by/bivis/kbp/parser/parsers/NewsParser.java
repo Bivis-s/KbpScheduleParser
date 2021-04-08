@@ -7,8 +7,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import static by.bivis.kbp.parser.utils.DateUtils.getCurrentUnixTime;
 import static by.bivis.kbp.parser.utils.JsoupUtils.*;
 import static by.bivis.kbp.parser.utils.StringUtils.cutOutSubStrings;
 
@@ -32,6 +34,7 @@ class NewsParser {
         } catch (ElementNotFoundError e) {
             news.setImgLink(null);
         }
+        news.setParsingDate(getCurrentUnixTime());
         return news;
     }
 
