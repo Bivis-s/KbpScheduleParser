@@ -17,19 +17,31 @@ public class ScheduleColumn {
     @Id
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "columns_cells",
-            joinColumns = @JoinColumn(name = "column_id"),
-            inverseJoinColumns = @JoinColumn(name = "cell_id"))
+    @OneToMany(mappedBy = "column")
     private List<ScheduleCell> cellList = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "schedules_columns")
-    private List<Schedule> schedule;
 
     @Column(name = "is_approved")
     private boolean isApproved;
+
+    @Column(name = "day_number")
+    private int dayNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
+
+    @Override
+    public String toString() {
+        return "ScheduleColumn{" +
+                "id=" + id +
+                ", cellList=" + cellList +
+                ", isApproved=" + isApproved +
+                ", dayNumber=" + dayNumber +
+                ", schedule=" + schedule +
+                '}';
+    }
 
     //TODO add dayOfWeekLabel (where 1 is monday)
 }

@@ -41,4 +41,9 @@ public class DateUtilsTest extends BaseParserTest {
         int actualDayNumber = DateUtils.getDayNumber(LocalDate.now());
         assertEquals(actualDayNumber, expectedDayNumber);
     }
+
+    @Test
+    public void printDayNumber() {
+        System.out.println(DateUtils.getDayNumber(LocalDate.now()));
+    }
 }

@@ -18,4 +18,13 @@ public class DateUtils {
     public static long getCurrentUnixTime() {
         return System.currentTimeMillis() / 1000L;
     }
+
+    public static int getKbpScheduleDayNumber(LocalDate localDate) {
+        int dayNumber =  getDayNumber(localDate);
+        if (dayNumber == 7) {
+            return 1;
+        } else {
+            return dayNumber;
+        }
+    }
 }

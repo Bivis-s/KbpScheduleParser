@@ -7,23 +7,23 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Table (name = "sources")
+@Table(name = "sources")
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 public class Source implements Serializable {
 
     @Id
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @ManyToMany(mappedBy = "lessons_sources")
-    List<ScheduleLesson> lessons;
+    @ManyToOne()
+    @JoinColumn(name = "lesson_id")
+    private ScheduleLesson lessons;
 
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
@@ -36,6 +36,7 @@ public class Source implements Serializable {
     private String linkParameter;
 
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private SourceType type;
 
     @Column(name = "parsing_date")
@@ -45,6 +46,35 @@ public class Source implements Serializable {
         this.value = value;
         this.linkParameter = linkParameter;
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Source source = (Source) o;
+        return id == source.id &&
+                Objects.equals(lessons, source.lessons) &&
+                Objects.equals(schedule, source.schedule) &&
+                Objects.equals(value, source.value) &&
+                Objects.equals(linkParameter, source.linkParameter) &&
+                type == source.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, lessons, schedule, value, linkParameter, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Source{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                ", linkParameter='" + linkParameter + '\'' +
+                ", type=" + type +
+                ", parsingDate=" + parsingDate +
+                '}';
     }
 
     // TODO add getSubCategory method

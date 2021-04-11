@@ -17,18 +17,25 @@ public class ScheduleCell {
     @Id
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "cells_lessons",
-            joinColumns = @JoinColumn(name = "cell_id"),
-            inverseJoinColumns = @JoinColumn(name = "lesson_id"))
+    @OneToMany(mappedBy = "cell")
     private List<ScheduleLesson> lessons = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "schedules_columns")
-    private List<ScheduleColumn> columns;
+    @ManyToOne
+    @JoinColumn(name = "column_id")
+    private ScheduleColumn column;
 
     public boolean isEmpty() {
         return lessons.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleCell{" +
+                "id=" + id +
+                ", lessons=" + lessons +
+                ", column=" + column +
+                '}';
     }
 }

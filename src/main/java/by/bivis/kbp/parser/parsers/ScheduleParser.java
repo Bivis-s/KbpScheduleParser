@@ -76,6 +76,7 @@ class ScheduleParser {
         for (int i = 0; i < unitedScheduleColumnList.size(); i++) {
             ScheduleColumn column = unitedScheduleColumnList.get(i);
             column.setApproved(unitedColumnApprovedList.get(i));
+            column.setDayNumber(i + 1);
         }
         return unitedScheduleColumnList;
     }
