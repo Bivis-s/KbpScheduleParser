@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static by.bivis.kbp.parser.utils.DateUtils.getDayNumber;
 import static by.bivis.kbp.parser.utils.DateUtils.getKbpScheduleDayNumber;
 
 @Entity
@@ -32,7 +31,7 @@ public class Schedule {
     @PrimaryKeyJoinColumn
     private Source source;
 
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
     private List<ScheduleColumn> columns;
 
     public Schedule(long parsingDate, Source source, List<ScheduleColumn> columns) {

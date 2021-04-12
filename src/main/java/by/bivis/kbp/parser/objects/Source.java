@@ -6,7 +6,6 @@ import by.bivis.kbp.parser.objects.schedule.ScheduleLesson;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Source implements Serializable {
+public class Source implements Comparable<Source> {
 
     @Id
     @Setter(AccessLevel.NONE)
@@ -77,5 +76,8 @@ public class Source implements Serializable {
                 '}';
     }
 
-    // TODO add getSubCategory method
+    @Override
+    public int compareTo(Source o) {
+        return getValue().compareTo(o.getValue());
+    }
 }
